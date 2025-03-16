@@ -28,3 +28,40 @@ function operate(num1, operator,num2){
         return operate;
     }
 }
+
+function buttonPressed(){
+    const digitbtns = document.querySelectorAll(".digit");
+
+    const displayOutput = document.querySelector(".Output");
+
+    const zerobtn = document.querySelector(".zerodigit");
+
+    const arithmeticOP = document.querySelectorAll(".childDivofOperator");
+
+    let operatorEntered = false;
+
+    zerobtn.addEventListener("click", () => {
+        displayOutput.innerText += zerobtn.innerText;
+    })
+
+    digitbtns.forEach( (digit)=> {
+        digit.addEventListener("click", () =>{
+            displayOutput.innerText += digit.innerText;
+        })
+    } )
+
+    arithmeticOP.forEach((childDivofOperator)=> {
+             childDivofOperator.addEventListener("click", () =>{
+                if(displayOutput.innerText === ""){
+                    alert("enter a number first");
+                }
+                else if(!operatorEntered) {
+                    displayOutput.innerText += childDivofOperator.innerText;
+                    operatorEntered = true;
+
+                }
+            });
+    });
+
+}
+document.addEventListener("DOMContentLoaded", buttonPressed);
